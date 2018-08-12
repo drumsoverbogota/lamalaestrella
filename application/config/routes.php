@@ -52,7 +52,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['playlists/(:any)'] = 'playlists/view/$1';
 $route['playlists'] = 'playlists';
-$route['(:any)'] = 'pages/view/$1';
+$route['paginas/(:any)'] = 'paginas/view/$1';
+$route['paginas'] = 'paginas';
+$route['(:any)'] = 'paginas/view/$1';
 $route['default_controller'] = 'playlists';
-$route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+/*$route['404_override'] = '';
+/*$route['translate_uri_dashes'] = FALSE;*/
