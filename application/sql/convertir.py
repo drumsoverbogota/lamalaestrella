@@ -1,20 +1,40 @@
 import re
 import sys
 
+PLAYLIST = 0
+IMAGEN = 1
+TITULO = 2
+MIXCLOUD = 3
+
+
 playlists   = [ [] ]
 prefijo     = "volcanmudo.gim/"
 
 regex_playlist  = ".*a\s*href=\"(.*)\"\s*tar.*"
 regex_imagen = "<media:gimg\s*'(.*)'\s*/>"
 regex_titulo = ".*/em>(.*by.*)</h3></h.*"
+regex_mixcloud = ".*src=\"(.*)\"\s*frameborder.*"
 
 pls = ""
 img = ""
 tit = ""
+mix = ""
+
+contenido = """<media:gimg '$IMAGEN$' />
+<h3> $TITULO$ </h3>
+<a href="$PLAYLIST$" target="_blank"><h3><em>Playlist</em></h3> </a>
+<iframe width="78" height="60"  src="$MIXCLOUD$" frameborder="0" ></iframe>"""
+
+sql = """
+INSERT INTO `playlists` (`id`, `titulo`, `contenido`, `fecha`, `year`) 
+VALUES (NULL, '$TITULO$', '$CONTENIDO$', '$FECHA$', 'Primero')
+"""
+
+
 
 archivo = sys.argv[1]
 print(archivo)
-
+   
 with open(archivo) as file_input:
     for line in file_input:
         """
@@ -30,14 +50,26 @@ with open(archivo) as file_input:
         match = re.search(regex_titulo, line)
         if match:
             tit = match.group(1)
-        if pls != "" and img != "" and tit != "":
-            playlists[0] = [pls.strip(), img.strip(), tit.strip()]
-            playlists.insert(0, [])
+        match = re.search(regex_mixcloud, line)
+        if match:
+            mix = match.group(1)            
+        if pls != "" and img != "" and tit != "" and mix != "":
+            #playlists[0] = [pls.strip(), img.strip(), tit.strip()]
+            #playlists.insert(0, [])
+            playlists[len(playlists)-1] = [pls.strip(), img.strip(), tit.strip(), mix.strip()]
+            playlists.append([])
             pls = ""
             img = ""
             tit = ""
+            mix = ""
                 
             
 playlists.remove([])
+print(len(playlists))
 for p in playlists:
-    print(p)
+    html = contenido.replace("$PLAYLIST$", p[PLAYLIST])
+    html = html.replace("$IMAGEN$", p[IMAGEN])
+    html = html.replace("$TITULO$", p[TITULO])
+    html = html.replace("$MIXCLOUD$", p[MIXCLOUD])
+    print('--------')
+    print(html)
