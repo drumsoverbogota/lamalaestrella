@@ -20,7 +20,7 @@ img = ""
 tit = ""
 mix = ""
 
-contenido = """<media:gimg '$IMAGEN$' />
+contenido = """<media:gimg "$IMAGEN$" />
 <h3> $TITULO$ </h3>
 <a href="$PLAYLIST$" target="_blank"><h3><em>Playlist</em></h3> </a>
 <iframe width="78" height="60"  src="$MIXCLOUD$" frameborder="0" ></iframe>"""
@@ -66,10 +66,28 @@ with open(archivo) as file_input:
             
 playlists.remove([])
 print(len(playlists))
-for p in playlists:
-    html = contenido.replace("$PLAYLIST$", p[PLAYLIST])
-    html = html.replace("$IMAGEN$", p[IMAGEN])
-    html = html.replace("$TITULO$", p[TITULO])
-    html = html.replace("$MIXCLOUD$", p[MIXCLOUD])
-    print('--------')
-    print(html)
+
+mes = 7
+dia = 1
+anho = 2017
+
+with open('salida.sql', 'w') as output:    
+    for p in playlists:
+        html = contenido.replace("$PLAYLIST$", p[PLAYLIST])
+        html = html.replace("$IMAGEN$", p[IMAGEN])
+        html = html.replace("$TITULO$", p[TITULO])
+        html = html.replace("$MIXCLOUD$", p[MIXCLOUD])
+        #print('--------')
+        #print(html.replace("\n", "\\r\\n"))
+        query = sql.replace("$TITULO$", p[TITULO])
+        query = query.replace("$CONTENIDO$", html.replace("\n", "\\r\\n"))
+        query = query.replace("$FECHA$", '-'.join([str(anho), str(mes), str(dia)]))
+        output.write(query)
+        dia += 7
+        if dia > 31:
+            dia = 1
+            mes += 1
+        if mes > 12:
+            mes = 1
+            anho += 1
+        #break
