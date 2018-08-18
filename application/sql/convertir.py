@@ -8,7 +8,7 @@ MIXCLOUD = 3
 
 
 playlists   = [ [] ]
-prefijo     = "volcanmudo.gim/"
+prefijo     = "http://volcanmudo.com/lamalaestrella/files/gimgs/"
 
 regex_playlist  = ".*a\s*href=\"(.*)\"\s*tar.*"
 regex_imagen = "<media:gimg\s*'(.*)'\s*/>"
@@ -20,10 +20,13 @@ img = ""
 tit = ""
 mix = ""
 
-contenido = """<media:gimg "$IMAGEN$" />
+contenido = """<html><style>body {font-family: "Palatino Linotype", "Courier New", Courier, monospace, sans-serif;}</style>
+<body>
+<img src ="$IMAGEN$" />
 <h3> $TITULO$ </h3>
 <a href="$PLAYLIST$" target="_blank"><h3><em>Playlist</em></h3> </a>
-<iframe width="78" height="60"  src="$MIXCLOUD$" frameborder="0" ></iframe>"""
+<iframe width="78" height="60"  src="$MIXCLOUD$" frameborder="0" ></iframe>
+</body></html>"""
 
 sql = """
 INSERT INTO `playlists` (`id`, `titulo`, `contenido`, `fecha`, `year`) 
@@ -74,7 +77,7 @@ anho = 2017
 with open('salida.sql', 'w') as output:    
     for p in playlists:
         html = contenido.replace("$PLAYLIST$", p[PLAYLIST])
-        html = html.replace("$IMAGEN$", p[IMAGEN])
+        html = html.replace("$IMAGEN$", prefijo + p[IMAGEN])
         html = html.replace("$TITULO$", p[TITULO])
         html = html.replace("$MIXCLOUD$", p[MIXCLOUD])
         #print('--------')
