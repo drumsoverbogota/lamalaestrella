@@ -20,13 +20,10 @@ img = ""
 tit = ""
 mix = ""
 
-contenido = """<html><style>body {font-family: "Palatino Linotype", "Courier New", Courier, monospace, sans-serif;}</style>
-<body>
-<img src ="$IMAGEN$" />
-<h3> $TITULO$ </h3>
-<a href="$PLAYLIST$" target="_blank"><h3><em>Playlist</em></h3> </a>
-<iframe width="78" height="60"  src="$MIXCLOUD$" frameborder="0" ></iframe>
-</body></html>"""
+contenido = """<img src ="$IMAGEN$" />
+<p> $TITULO$ </p>
+<a href="$PLAYLIST$" target="_blank"><p><em>Playlist</em></p> </a>
+<iframe class="frame" width="78" height="60"  src="$MIXCLOUD$" frameborder="0" ></iframe>"""
 
 sql = """
 INSERT INTO `playlists` (`id`, `titulo`, `contenido`, `fecha`, `year`) 

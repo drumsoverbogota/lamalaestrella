@@ -1,6 +1,10 @@
-<h2><?php echo $title; ?></h2>
 
+<table>
 <?php foreach ($playlists as $playlist_item): ?>
-        <p><a href="<?php echo site_url('playlists/'.$playlist_item['id']); ?>"><?php echo $playlist_item['titulo']; ?></a></p>
-
+	<tbody>
+        <tr><td>
+        	<a href="<?php echo site_url('playlists/'.$playlist_item['id']); ?>"><?php echo strtoupper($playlist_item['titulo']); ?>
+        </td></a></tr>
+    </tbody>
 <?php endforeach; ?>
+</table>

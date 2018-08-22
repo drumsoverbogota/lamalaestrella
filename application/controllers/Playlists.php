@@ -30,8 +30,8 @@ class Playlists extends CI_Controller {
 
                 $data['title'] = $data['playlist_item']['titulo'];
 
-                //$this->load->view('templates/header', $data);
+                $this->load->view('templates/header', $data);
                 $this->load->view('playlists/view', $data);
-                //$this->load->view('templates/footer');
+                $this->load->view('templates/footer');
         }
 }
