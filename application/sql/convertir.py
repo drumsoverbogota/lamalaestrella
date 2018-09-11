@@ -27,7 +27,7 @@ contenido = """<img src ="$IMAGEN$" />
 
 sql = """
 INSERT INTO `playlists` (`id`, `titulo`, `contenido`, `fecha`, `year`) 
-VALUES (NULL, '$TITULO$', '$CONTENIDO$', '$FECHA$', 'Primero')
+VALUES (NULL, '$TITULO$', '$CONTENIDO$', '$FECHA$', 'Primero');
 """
 
 
@@ -75,7 +75,8 @@ with open('salida.sql', 'w') as output:
     for p in playlists:
         html = contenido.replace("$PLAYLIST$", p[PLAYLIST])
         html = html.replace("$IMAGEN$", prefijo + p[IMAGEN])
-        html = html.replace("$TITULO$", p[TITULO])
+        html = html.replace("$TITULO$", p[TITULO].replace("'", "\\'"))
+        print(p[TITULO].replace("'", "\\'"))
         html = html.replace("$MIXCLOUD$", p[MIXCLOUD])
         #print('--------')
         #print(html.replace("\n", "\\r\\n"))
@@ -90,4 +91,6 @@ with open('salida.sql', 'w') as output:
         if mes > 12:
             mes = 1
             anho += 1
+        if mes == 2 and dia > 27:
+            dia = 27
         #break

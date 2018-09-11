@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2
--- http://www.phpmyadmin.net
+-- version 4.7.9
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Aug 10, 2018 at 05:40 PM
--- Server version: 5.7.23-0ubuntu0.16.04.1
--- PHP Version: 7.0.30-0ubuntu0.16.04.1
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 11-09-2018 a las 01:04:51
+-- Versión del servidor: 5.7.21
+-- Versión de PHP: 5.6.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,35 +19,26 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `lamalaestrella2`
+-- Base de datos: `lamalaestrella2`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `playlists`
+-- Estructura de tabla para la tabla `playlists`
 --
 
-CREATE TABLE `playlists` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `playlists`;
+CREATE TABLE IF NOT EXISTS `playlists` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(128) NOT NULL,
   `contenido` text NOT NULL,
   `fecha` date NOT NULL,
-  `year` enum('Primero','Segundo') NOT NULL
+  `year` enum('Primero','Segundo') NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `playlists`
---
-ALTER TABLE `playlists`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`id`);
-
-ALTER TABLE `playlists` CHANGE `id` `id` INT(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

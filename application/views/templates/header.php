@@ -1,49 +1,26 @@
 <!DOCTYPE html>
 <html>
         <head>
-                <title>La Mala Estrella</title>
+                <title><?php echo $title; ?></title>
 				<style>
-					
-					/*ul {
-						list-style-type: none;
-						margin: 10;
-						padding: 10	;
-						overflow: hidden;
-						
-					}
-
-					li {
-						float: left;
-						padding: 2em;
-					}*/
-						
-					/*li a {
-						padding: 2em;
-					}*/
-					/*
-					hr {
-						display: block;
-						height: 1px;
-						border: 0;
-						border-top: 1px solid #ccc;
-						margin: 1em 0;
-						padding: 0;
-					}		
-					*/
 					
 					.center {
 					    margin: auto;
 					    width: 60%;
 					    
-					}
+						}
 
-					.top-image {
-					    display: block;
-					    margin-left: auto;
-					    margin-right: auto;					    						
-						width: 25%;
-					}
-					
+				.top-image {
+				    display: block;
+				    margin-left: auto;
+				    margin-right: auto;					    						
+					/*width: 25%;*/
+					width: 50vw;
+					min-width: 300px;	
+					margin-bottom: 3cm;		
+
+				}
+						
 					body {
 						background-color: rgb(255, 255, 204);
 						margin-top: 2em;
@@ -90,6 +67,10 @@
 					a { 
 						color: inherit; 
 					} 
+					table{
+						border-collapse:separate; 
+						border-spacing:0.5em;
+					}
 .wrap {
     width: 320px;
     height: 192px;
@@ -115,5 +96,5 @@
 				</style>                
         </head>
         <body>        
-        	<a href="<?php echo site_url('/'); ?>"><img class="top-image" src="<?php echo base_url('images/arriba.jpg'); ?>"></a>
+        	<a href="<?php echo site_url('/'); ?>"><img class="top-image" src="<?php echo base_url('images/lamalatransparentec.png'); ?>"></a>
         	</br>
