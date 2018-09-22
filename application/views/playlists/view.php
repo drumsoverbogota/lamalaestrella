@@ -1,8 +1,6 @@
 <div class="center">
 
-
-
 	<?php
-	echo '<h2>'.$playlist_item['titulo'].'</h2>';
+	#echo '<h3>'.$playlist_item['titulo'].'</h3>';
 	echo $playlist_item['contenido'];?>
 </div>

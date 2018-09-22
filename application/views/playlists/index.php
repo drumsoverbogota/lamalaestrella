@@ -9,8 +9,16 @@
 		
 	<tbody>
         <tr><td>
-        	<a href="<?php echo site_url('playlists/'.$playlist_item['id']); ?>"><?php echo ($playlist_item['titulo']); ?>
-        </td></a></tr>
+        	<?php
+        		preg_match('@([áéíóú\w\s\']*)\s*/\s*(.*)@', $playlist_item['titulo'], $matches);
+        		//echo ($matches[1]); 
+        		//echo ' / '; 
+        		//echo ($matches[2]); 
+        	?>
+        	<a href="<?php echo site_url('playlists/'.$playlist_item['id']); ?>"><?php echo ($matches[1]); 
+        		echo ' / '; ?>
+        		<font color="#686767"><?php echo ($matches[2]); ?></font></a>
+        </td></tr>
     </tbody>
 	<?php endforeach; ?>
 <?php } ?>

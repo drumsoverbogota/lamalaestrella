@@ -20,7 +20,11 @@ img = ""
 tit = ""
 mix = ""
 
-contenido = """<img src ="$IMAGEN$" />
+contenido = """<div class="wrap">
+<div id="img_wrap">
+<img class="normal" src ="$IMAGEN$" />
+</div>
+</div>
 <p> $TITULO$ </p>
 <a href="$PLAYLIST$" target="_blank"><p><em>Playlist</em></p> </a>
 <iframe class="frame" width="78" height="60"  src="$MIXCLOUD$" frameborder="0" ></iframe>"""
