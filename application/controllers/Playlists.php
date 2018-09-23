@@ -51,4 +51,35 @@ class Playlists extends CI_Controller {
                 $this->load->view('playlists/view', $data);
                 $this->load->view('templates/footer');
         }
+
+
+        public function create()
+        {
+                $this->load->helper('form');
+                $this->load->library('form_validation');
+                
+
+                $this->form_validation->set_rules('titulo', 'Titulo', 'required');
+                $this->form_validation->set_rules('contenido', 'Contenido', '');
+                $this->form_validation->set_rules('year', 'Año', '');
+                
+                $data['title'] = "Crear";
+                $data['year'] = $this->playlists_model->get_year();
+
+                if ($this->form_validation->run() === FALSE)
+                {
+                        $this->load->view('templates/header', $data);
+                        $this->load->view('playlists/create', $data);
+                        $this->load->view('templates/footer');    
+
+                }
+                else
+                {
+                        $row = $this->playlists_model->set_playlist();     
+                        $this->view($row);                                      
+                }                
+
+            
+
+        }        
 }
